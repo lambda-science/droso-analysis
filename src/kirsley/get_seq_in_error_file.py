@@ -3,7 +3,7 @@
 import pandas as pd
 try:
     import sys
-    sys.path.append('~/stage-thompson/src/')
+    sys.path.append('~/droso-analysis/src/')
     from Generate_Exon_Map_4 import fasta2List
 except:
     pass

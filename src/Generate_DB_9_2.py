@@ -136,7 +136,7 @@ df_cds = df_cds.merge(df_genom, on='transcript_ID', how='outer')
 df_cds.to_sql(con=conn, name='transcript', index=False, if_exists="append")
 
 # Table exon_intron_map
-# stage-thompson/data$ cat mismatch-analysis2/Exon_map.tab mismatch-analysis2/Intron_map.tab mismatch-flagging/human_Exon_map.tab mismatch-flagging/human_Intron_map.tab > full_exon_intron_map.tab
+# droso-analysis/data$ cat mismatch-analysis2/Exon_map.tab mismatch-analysis2/Intron_map.tab mismatch-flagging/human_Exon_map.tab mismatch-flagging/human_Intron_map.tab > full_exon_intron_map.tab
 full_map = pd.read_csv(
     "../../data/full_exon_intron_map.tab", sep="\t", header=None)
 full_map.drop(0, axis=1, inplace=True)

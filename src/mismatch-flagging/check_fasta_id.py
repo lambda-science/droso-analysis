@@ -1,10 +1,10 @@
 import pandas as pd
 import sys
 try:
-    sys.path.append('~/stage-thompson/src/')
+    sys.path.append('~/droso-analysis/src/')
     from Generate_Exon_Map_4 import *
 except:
-    print("Error import, is your stage-thompson located in home (~/) ?")
+    print("Error import, is your droso-analysis located in home (~/) ?")
     pass
 
 ID_file = pd.read_csv(sys.argv[1], sep="\t")

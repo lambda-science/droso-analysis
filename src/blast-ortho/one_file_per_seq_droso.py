@@ -50,5 +50,5 @@ def write_hum_prot(fasta_dict):
 
 
 if __name__ == "__main__":
-    fasta_dict = fasta2List("../../temp/UP000005640_9606.fasta")
+    fasta_dict = fasta2List("../../temp/UP000000803_7227.fasta")
     write_hum_prot(fasta_dict)

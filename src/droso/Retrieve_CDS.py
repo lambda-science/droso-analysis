@@ -1,4 +1,9 @@
-# # Script permettant de récupérer les séquences genomiques/CDS des transcript d'intéret (sequence/id) ainsi que les positiosn des exons (lookup/id)
+import json
+import grequests
+import sys
+import requests
+import pandas as pd
+# Script permettant de récupérer les séquences genomiques/CDS des transcript d'intéret (sequence/id) ainsi que les positiosn des exons (lookup/id)
 #
 # Input:
 # arg1 : fichier transcript_ensembl.tab tableau de correspondance Uniprot AC/ID -> Ensembl Transcript téléchargé sur https://www.uniprot.org/uploadlists/
@@ -12,12 +17,6 @@
 
 # Importation des lib et data
 
-import pandas as pd
-import requests
-import sys
-import grequests
-import json
-
 
 def makeAsyncEnsemblSeqRequest(ID_file, type_request):
     # Function: Create async request on Ensembl API to get genomic or CDS sequences of a list of ID
@@ -28,9 +27,9 @@ def makeAsyncEnsemblSeqRequest(ID_file, type_request):
     # 		all_response: (list) list of response to ensemble API request (json format)
     # Description: This function can have a long running time (multiple hours) you can change the size=10 parameters to increase
     # the number of simultaneous request. You can print all_reposne to check if all response are 200 meaning they all worked.
-    url = "https://rest.ensembl.org/sequence/id"
-    headers = {"Content-Type": "application/json",
-               "Accept": "application/json"}
+    url = "https://api.flybase.org/v1.0/sequence/id/bulk"
+    headers = {"Content-Type": "application/x-www-form-urlencoded",
+               "Accept": "text/plain"}
     error = True
     params = []
     for i in range(0, len(ID_file.index), 40):
@@ -53,8 +52,8 @@ def makeAsyncEnsemblSeqRequest(ID_file, type_request):
                 r = requests.post(url, headers=headers,
                                   data=json.dumps(params[index]))
                 all_response[index] = r
-                continue  
-            
+                continue
+
             elif not response.ok:
                 error = True
                 r = requests.post(url, headers=headers,
@@ -121,8 +120,8 @@ def makeAsyncEnsemblExonmapRequest(ID_file):
                 r = requests.post(url, headers=headers,
                                   data=json.dumps(params[index]))
                 all_response[index] = r
-                continue 
-            
+                continue
+
             elif not response.ok:
                 error = True
                 r = requests.post(url, headers=headers,

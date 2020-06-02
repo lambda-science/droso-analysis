@@ -1,4 +1,4 @@
-cd ~/stage-thompson/data/raw/refseq-blast/
+cd ~/droso-analysis/data/raw/refseq-blast/
 FILES=*.id
 for f in $FILES
 do

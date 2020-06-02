@@ -1,4 +1,4 @@
-# Script: Convert Uniprot protein ID to Ensembl Transcript ID
+# Script: Convert Uniprot protein ID to Flybase ID
 # Input:
 # 		arg1: File containing uniprot ID one per row
 #
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ID_list = [line.rstrip('\n') for line in open(sys.argv[1])]
     params = {
         "from": "ACC+ID",
-        "to": "ENSEMBLGENOME_TRS_ID",
+        "to": "FLYBASE_ID",
         "format": "tab",
         "query": ' '.join(ID_list)
     }
